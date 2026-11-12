@@ -1,4 +1,5 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ExceptionServices;
 using System.Xml;
 
 namespace Dolgozat
@@ -67,13 +68,18 @@ namespace Dolgozat
             Console.WriteLine("Magánhangzóval kezdődő szavak: ");
             for (int i = 0; i < huto.Length; i++)
             {
-                string item = huto[i].ToLower();
-                Console.WriteLine("Item");
+                Console.WriteLine("Elindult");
+                string item = huto[i];
+                Console.WriteLine();
+                char betu = item[0];
+                Console.WriteLine("item megadva");
+                //item = item.ToLower();
+                //Console.WriteLine("Item toLower");
                 for (int y = 0; y < maganhangzok.Length; y++)
                 {
                     Console.WriteLine("Huto: " + item);
                     Console.WriteLine("Csekkolt betu: " + maganhangzok[y]);
-                    if (item.StartsWith(maganhangzok[y]))
+                    if (betu == maganhangzok[y])
                     {
                         Console.Write(huto[i] + ", ");
                     }
@@ -108,28 +114,105 @@ namespace Dolgozat
             return tomb;
         }
 
-        static void LeghosszabbNovekvo()
+        static int[] LeghosszabbNovekvo()
         {
             bool sorozat = true;
             int previousNumber = szamok[0];
-            for (int i = 1; i < szamok.Length - 1; i++)
+            string[] sorozatok = new string[szamok.Length];
+            int y = 0;
+            sorozatok[y] += Convert.ToString(szamok[0]);
+            for (int i = 1; i < szamok.Length; i++)
             {
                 if (sorozat && (previousNumber + 1) == szamok[i])
                 {
+                    sorozatok[y] += Convert.ToString(szamok[i]);
                     previousNumber = szamok[i];
                     sorozat = true;
+                } else
+                {
+                    sorozat = false;
+                    y++;
                 }
                 
                 
+            }
+            //------------------TEST----------------------
+
+            for (int i = 0; i < sorozatok.Length; i++)
+            {
+                Console.WriteLine($"{i+1}. sorozatt: " + sorozatok[i]);
+            }
+
+            //------------------------------------------
+
+            int legnagyobbSorozatIndex = -1;
+            int legnagyobbSorozatSzam = 0;
+            
+            for (int i = 0; i < sorozatok.Length; i++)
+            {
+                if (sorozatok[i] == null)
+                {
+                    continue;
+                }
+
+                int sorozattHossz = sorozatok[i].Length;
+                
+                if (sorozatok[i].Length > legnagyobbSorozatSzam)
+                {
+                    
+                    legnagyobbSorozatIndex = i;
+                    legnagyobbSorozatSzam = sorozatok.Length;
+                    Console.WriteLine("index: " + legnagyobbSorozatIndex);
+                    Console.WriteLine("legnagyobbSorozatSzam: " + legnagyobbSorozatSzam);
+                }
+
+            }
+
+
+            int[] legnagyobbSorozat = new int[legnagyobbSorozatSzam];
+            //Console.Write("Legnagyobb sorozat: ");
+            string legnagyobbSorozatSorozat = sorozatok[legnagyobbSorozatIndex];
+            Console.WriteLine(legnagyobbSorozatSorozat);
+            int x = 0;
+            foreach (char betu in legnagyobbSorozatSorozat)
+            {
+                Console.WriteLine(betu);
+                legnagyobbSorozat[x] = Convert.ToInt32(betu);
+                Console.WriteLine("legnagyobbSorozat tomb 1.: " + legnagyobbSorozat[x]);
+                Console.WriteLine("sorozatokbol: " + Convert.ToInt32(betu));
+                x++;
+            }
+
+            return legnagyobbSorozat;
+        }
+
+        static void AtlagAlattiDuplazas()
+        {
+            int sum = szamok.Sum();
+            double atlag =  sum/szamok.Length;
+            
+            for (int i = 0; i < szamok.Length; i++)
+            {
+                if (szamok[i] < atlag)
+                {
+                    szamok[i] = szamok[i] * 2;
+                }
             }
         }
 
         static void Main(string[] args)
         {
             
-            huto[5] = "Igen";
+            huto[5] = "igen";
             huto[6] = "Nem";
-            MaganhangzoListazas();
+            huto[7] = "alma";
+            for (int i = 0; i < szamok.Length; i++)
+            {
+                szamok[i] = i;
+            }
+            LeghosszabbNovekvo();
+            
+
         }
     }
 }
