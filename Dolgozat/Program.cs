@@ -18,6 +18,22 @@
 
             return success;
         }
+        static int Takarit(string[] tomb)
+        {
+            string[] seged = new string[tomb.Length];
+            int y = 0;
+            for (int i = 0; i < seged.Length; i++)
+            {
+                if (tomb[i] != "")
+                {
+                    seged[y] = tomb[i];
+                    y++;
+                }
+
+            }
+            return y + 1;
+
+        }
 
         static void Main(string[] args)
         {
