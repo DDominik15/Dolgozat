@@ -191,12 +191,13 @@ namespace Dolgozat
             huto[5] = "igen";
             huto[6] = "Nem";
             huto[7] = "alma";
-            for (int i = 0; i < szamok.Length; i++)
-            {
-                szamok[i] = i;
-            }
-            LeghosszabbNovekvo();
-            
+            huto[8] = "orsolya";
+            FeltoltEgyediekkel(1,10, szamok);
+
+
+
+
+
 
         }
     }
