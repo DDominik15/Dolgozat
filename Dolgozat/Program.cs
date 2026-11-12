@@ -136,14 +136,6 @@ namespace Dolgozat
                 
                 
             }
-            //------------------TEST----------------------
-
-            for (int i = 0; i < sorozatok.Length; i++)
-            {
-                Console.WriteLine($"{i+1}. sorozatt: " + sorozatok[i]);
-            }
-
-            //------------------------------------------
 
             int legnagyobbSorozatIndex = -1;
             int legnagyobbSorozatSzam = 0;
@@ -162,24 +154,17 @@ namespace Dolgozat
                     
                     legnagyobbSorozatIndex = i;
                     legnagyobbSorozatSzam = sorozatok.Length;
-                    Console.WriteLine("index: " + legnagyobbSorozatIndex);
-                    Console.WriteLine("legnagyobbSorozatSzam: " + legnagyobbSorozatSzam);
                 }
 
             }
 
-
             int[] legnagyobbSorozat = new int[legnagyobbSorozatSzam];
             //Console.Write("Legnagyobb sorozat: ");
             string legnagyobbSorozatSorozat = sorozatok[legnagyobbSorozatIndex];
-            Console.WriteLine(legnagyobbSorozatSorozat);
             int x = 0;
             foreach (char betu in legnagyobbSorozatSorozat)
             {
-                Console.WriteLine(betu);
-                legnagyobbSorozat[x] = Convert.ToInt32(betu);
-                Console.WriteLine("legnagyobbSorozat tomb 1.: " + legnagyobbSorozat[x]);
-                Console.WriteLine("sorozatokbol: " + Convert.ToInt32(betu));
+                legnagyobbSorozat[x] = Convert.ToInt32(Convert.ToString(betu));
                 x++;
             }
 
